@@ -2,17 +2,23 @@
 
 {% block content %}
 
-<h1>Duplicates</h1>
+<h1>Duplicate Review</h1>
 
 {% for d in rows %}
 
-<div class="dup-card">
+<div class="dup">
 
-<p><b>Duplicate:</b></p>
-<p>{{ d.source_path }}</p>
+    <img src="/thumbnail?path={{ d.source_path }}" width="150">
 
-<p><b>Original:</b></p>
-<p>{{ d.duplicate_of }}</p>
+    <p>Duplicate:</p>
+    <code>{{ d.source_path }}</code>
+
+    <p>Original ID:</p>
+    <code>{{ d.duplicate_of }}</code>
+
+    <button onclick="deleteFile('{{ d.source_path }}')">
+        Delete
+    </button>
 
 </div>
 

@@ -6,3 +6,12 @@ reverse_geocoder
 pyyaml
 flask
 geopy
+
+opencv-python 
+face-recognition 
+numpy 
+scikit-learn 
+torch 
+torchvision 
+ftfy 
+regex

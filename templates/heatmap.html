@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Storage Heatmap (GB per Year)</h1>
+
+{% for year, size in data.items() %}
+
+<div class="bar">
+    <b>{{ year }}</b> — {{ size }} GB
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -105,3 +105,8 @@ python organizer.py
 # 4. start UI
 python app.py
 ```
+
+## 📝 Video 
+
+# install ffmpeg (Windows)
+winget install Gyan.FFmpeg

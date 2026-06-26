@@ -7,15 +7,12 @@ from flask import (
     send_file,
     abort
 )
-
 from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
-
 from gallery import *
 
 app = Flask(__name__)
-
 
 @app.route("/")
 def home():
@@ -25,21 +22,18 @@ def home():
         stats=stats
     )
 
-
 @app.route("/gallery")
 def gallery():
 
     category = request.args.get(
         "category"
     )
-
     page = int(
         request.args.get(
             "page",
             0
         )
     )
-
     images = get_gallery(
         category,
         page
@@ -55,18 +49,12 @@ def gallery():
 
 @app.route("/timeline")
 def timeline():
-
     rows = get_timeline()
-
     grouped = defaultdict(list)
-
     for r in rows:
-
         dt = r["capture_date"]
-
         if not dt:
             continue
-
         day = (
             datetime
             .fromisoformat(dt)
@@ -74,7 +62,6 @@ def timeline():
                 "%Y-%m-%d"
             )
         )
-
         grouped[day].append(r)
 
     return render_template(
@@ -82,17 +69,26 @@ def timeline():
         data=grouped
     )
 
-
 @app.route("/duplicates")
 def duplicates():
+    conn = get_connection()
+    cur = conn.cursor()
 
-    rows = get_duplicates()
+    cur.execute("""
+        SELECT
+            id,
+            source_path,
+            duplicate_of
+        FROM files
+        WHERE status='duplicate'
+    """)
+
+    rows = cur.fetchall()
 
     return render_template(
         "duplicates.html",
         rows=rows
     )
-
 
 @app.route("/events")
 def events():
@@ -104,7 +100,6 @@ def events():
         rows=rows
     )
 
-
 @app.route("/map")
 def map_view():
 
@@ -115,36 +110,26 @@ def map_view():
         points=rows
     )
 
-
 @app.route("/image")
 def image():
 
     path = request.args.get(
         "path"
     )
-
     p = Path(path)
-
     if not p.exists():
         abort(404)
-
     return send_file(p)
-
 
 @app.route("/thumbnail")
 def thumbnail():
-
     path = request.args.get(
         "path"
     )
-
     p = Path(path)
-
     if not p.exists():
         abort(404)
-
     return send_file(p)
-
 
 if __name__ == "__main__":
     app.run(
@@ -152,3 +137,23 @@ if __name__ == "__main__":
         port=5000,
         debug=True
     )
+    
+@app.route("/delete", methods=["POST"])
+def delete():
+    import os
+    data = request.json
+
+    path = Path(data["path"])
+
+    if path.exists():
+        os.remove(path)
+
+    return {"ok": True}
+
+@app.route("/heatmap")
+def heatmap():
+    from storage_heatmap import compute_heatmap
+
+    data = compute_heatmap()
+
+    return render_template("heatmap.html", data=data)
