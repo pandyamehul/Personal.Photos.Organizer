@@ -157,3 +157,30 @@ def heatmap():
     data = compute_heatmap()
 
     return render_template("heatmap.html", data=data)
+
+@app.route("/memories")
+def memories():
+    from memories_engine import get_top_memories
+
+    memories = get_top_memories()
+
+    return render_template(
+        "memories.html",
+        memories=memories
+    )
+
+@app.route("/search")
+def search_page():
+    query = request.args.get("q", "")
+
+    results = []
+
+    if query:
+        from search_engine import search_all
+        results = search_all(query)
+
+    return render_template(
+        "search.html",
+        query=query,
+        results=results
+    )

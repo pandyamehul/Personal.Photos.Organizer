@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>🔎 Search</h1>
+
+<form action="/search">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search memories, places, people..."
+        value="{{ query }}"
+        style="width:80%;padding:10px;"
+    >
+</form>
+
+<hr>
+
+<div class="masonry">
+
+{% for r in results %}
+
+    <img src="/thumbnail?path={{ r }}">
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>🧠 Memories</h1>
+
+{% for score, key, items in memories %}
+
+<div class="memory-card">
+
+    <h2>{{ key }}</h2>
+    <p>{{ items|length }} photos</p>
+
+    <div class="memory-grid">
+
+        {% for i in items[:12] %}
+            <img src="/thumbnail?path={{ i.path }}">
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}
