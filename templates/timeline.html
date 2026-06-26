@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Timeline</h1>
+
+{% for day, items in data.items() %}
+
+<h2>{{ day }}</h2>
+
+<div class="timeline-row">
+
+{% for item in items %}
+    <a href="/image?path={{ item.current_path }}">
+        <img src="/thumbnail?path={{ item.current_path }}">
+    </a>
+{% endfor %}
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

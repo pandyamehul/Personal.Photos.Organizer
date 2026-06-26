@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Events</h1>
+
+{% for e in rows %}
+
+<div class="event-card">
+    <h3>{{ e.event_name }}</h3>
+    <p>{{ e.count }} photos</p>
+    <p>{{ e.min }} → {{ e.max }}</p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

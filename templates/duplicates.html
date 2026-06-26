@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Duplicates</h1>
+
+{% for d in rows %}
+
+<div class="dup-card">
+
+<p><b>Duplicate:</b></p>
+<p>{{ d.source_path }}</p>
+
+<p><b>Original:</b></p>
+<p>{{ d.duplicate_of }}</p>
+
+</div>
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}

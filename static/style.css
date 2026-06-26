@@ -1,0 +1,64 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #111;
+    color: white;
+}
+
+.topbar {
+    background: #222;
+    padding: 10px;
+}
+
+.topbar a {
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 15px;
+}
+
+/* dashboard */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* gallery */
+.masonry {
+    column-count: 5;
+    column-gap: 10px;
+}
+
+.masonry img {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+/* timeline */
+.timeline-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.timeline-row img {
+    width: 120px;
+    border-radius: 5px;
+}
+
+/* map */
+#map {
+    height: 85vh;
+    width: 100%;
+}

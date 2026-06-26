@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Photo Organizer Dashboard</h1>
+
+<div class="grid">
+
+<div class="card">Total<br>{{ stats.total }}</div>
+<div class="card">Duplicates<br>{{ stats.duplicates }}</div>
+<div class="card">Screenshots<br>{{ stats.screenshots }}</div>
+<div class="card">WhatsApp<br>{{ stats.whatsapp }}</div>
+<div class="card">Events<br>{{ stats.events }}</div>
+<div class="card">Size (GB)<br>{{ stats.size_gb }}</div>
+
+</div>
+
+{% endblock %}

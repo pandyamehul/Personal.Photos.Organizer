@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Gallery</h1>
+
+<div class="filters">
+    <a href="/gallery">All</a>
+    <a href="/gallery?category=photos">Photos</a>
+    <a href="/gallery?category=whatsapp">WhatsApp</a>
+    <a href="/gallery?category=screenshots">Screenshots</a>
+</div>
+
+<div class="masonry">
+
+{% for img in images %}
+    <a href="/image?path={{ img.current_path }}">
+        <img src="/thumbnail?path={{ img.current_path }}">
+    </a>
+{% endfor %}
+
+</div>
+
+<div class="pagination">
+    <a href="/gallery?page={{ page + 1 }}">Next</a>
+</div>
+
+{% endblock %}
