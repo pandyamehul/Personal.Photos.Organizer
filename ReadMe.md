@@ -27,13 +27,13 @@ Features:
 
 Install uv if not installed:
 
-```bash
+```pwsh
 pip install uv
 ```
 
-## Create a virtual environment and install dependencies:
+## Create a virtual environment and install dependencies
 
-```bash
+```pwsh
 python -m venv venv
 venv\Scripts\activate
 uv add requirements.txt
@@ -43,11 +43,11 @@ uv add requirements.txt
 
 This processes and organizes your files:
 
-```bash
+```pwsh
 python organizer.py
 ```
 
-## What it does:
+## What it does?
 
 - scans all media files
 - builds SQLite index
@@ -62,7 +62,7 @@ python organizer.py
 
 After processing:
 
-```
+```pwsh
 OrganizedPhotos/
 │
 ├── Photos/
@@ -79,12 +79,29 @@ OrganizedPhotos/
 
 Start Flask server:
 
-```bash
+```pwsh
 python app.py
 ```
 
 Then open in browser:
 
-```
+```pwsh
 http://localhost:5000
+```
+
+## 📌 Start order (recommended)
+
+```pwsh
+# 1. setup env
+uv venv
+.venv\Scripts\activate
+
+# 2. install deps
+uv pip install -r requirements.txt
+
+# 3. run organizer first
+python organizer.py
+
+# 4. start UI
+python app.py
 ```
