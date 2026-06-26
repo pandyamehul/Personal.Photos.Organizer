@@ -4,3 +4,4 @@ exifread
 tqdm 
 reverse_geocoder 
 pyyaml
+flask
