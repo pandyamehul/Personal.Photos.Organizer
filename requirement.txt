@@ -1,0 +1,6 @@
+pillow 
+pillow-heif 
+exifread 
+tqdm 
+reverse_geocoder 
+pyyaml
